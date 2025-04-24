@@ -44,20 +44,29 @@ TagManager:
   - name: Row0
     uniqueID: 2856279151
     locked: 0
+  - name: Overlay0
+    uniqueID: 1927964715
+    locked: 0
   - name: Row1
     uniqueID: 3270514637
+    locked: 0
+  - name: Overlay1
+    uniqueID: 466233415
     locked: 0
   - name: Row2
     uniqueID: 188962653
     locked: 0
+  - name: Overlay2
+    uniqueID: 1899822581
+    locked: 0
   - name: Row3
     uniqueID: 2400228343
     locked: 0
+  - name: Overlay3
+    uniqueID: 577536797
+    locked: 0
   - name: Row4
     uniqueID: 3149895021
-    locked: 0
-  - name: Row5
-    uniqueID: 536496263
     locked: 0
   - name: Discard
     uniqueID: 601687799

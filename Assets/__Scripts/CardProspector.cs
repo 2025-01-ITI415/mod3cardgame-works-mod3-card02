@@ -28,4 +28,15 @@ public class CardProspector : Card
         base.OnMouseUpAsButton();// b
     }
 
+    public bool IsUncovered(Dictionary<int, CardProspector> mineDict)
+    {
+        foreach (int id in layoutSlot.hiddenBy)
+        {
+            CardProspector cp = mineDict[id];
+            if (cp != null && cp.state == eCardState.mine)
+                return false;
+        }
+        return true;
+    }
+
 }

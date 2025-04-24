@@ -248,7 +248,17 @@ public class Card_Golf : MonoBehaviour
                 bool validMatch = true;  // Initially assume that it’s valid 
 
                 // If the card is face-down, it’s not valid
-                if (!cp.faceUp) validMatch = false;
+                if (!cp.faceUp || !cp.IsUncovered(S.mineIdToCardDict)) validMatch = false;
+
+                foreach (int coverID in cp.layoutSlot.hiddenBy)
+                {
+                    CardProspector coverCP = S.mineIdToCardDict[coverID];
+                    if (coverCP != null && coverCP.state == eCardState.mine)
+                    {
+                        validMatch = false;
+                        break;
+                    }
+                }
 
                 // If it’s not an adjacent rank, it’s not valid
                 if (!cp.AdjacentTo(S.target)) validMatch = false;            // b
