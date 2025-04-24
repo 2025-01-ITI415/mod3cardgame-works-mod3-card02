@@ -32,9 +32,16 @@ public class CardProspector : Card
     {
         foreach (int id in layoutSlot.hiddenBy)
         {
-            CardProspector cp = mineDict[id];
-            if (cp != null && cp.state == eCardState.mine)
+            if (mineDict.TryGetValue(id, out CardProspector cp))
+            {
+                if (cp != null && cp.state == eCardState.mine)
+                    return false;
+            }
+            else
+            {
+                // The covering card hasn't been added yet — assume it's hiding this one
                 return false;
+            }
         }
         return true;
     }

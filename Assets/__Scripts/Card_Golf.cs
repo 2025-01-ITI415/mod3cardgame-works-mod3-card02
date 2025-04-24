@@ -21,6 +21,10 @@ public class Card_Golf : MonoBehaviour
     // A Dictionary to pair mine layout IDs and actual Cards
     private Dictionary<int, CardProspector> mineIdToCardDict;                 // a
 
+    public GameObject overlayPrefab;
+
+    private Dictionary<CardProspector, GameObject> overlays = new Dictionary<CardProspector, GameObject>();
+
 
     void Start()
     {
@@ -122,6 +126,24 @@ public class Card_Golf : MonoBehaviour
             // Add this CardProspector to the mineIDtoCardDict Dictionary
             mineIdToCardDict.Add(slot.id, cp);                                // c
 
+            GameObject overlay = Instantiate(overlayPrefab);
+            overlay.transform.SetParent(cp.transform);
+            overlay.transform.localPosition = Vector3.zero; // Center it on the card
+            overlays.Add(cp, overlay);
+
+            SpriteRenderer overlaySR = overlay.GetComponent<SpriteRenderer>();
+            SpriteRenderer cardSR = cp.GetComponent<SpriteRenderer>();
+
+            if (overlaySR != null && cardSR != null)
+            {
+                overlaySR.sortingLayerName = cardSR.sortingLayerName;
+                overlaySR.color = new Color(1f, 1f, 1f, 0.5f); // semi-transparent white
+            }
+
+            // Decide whether the overlay should be shown
+            bool shouldShowOverlay = !cp.faceUp || !cp.IsUncovered(mineIdToCardDict);
+            overlay.SetActive(shouldShowOverlay);
+
         }
     }
 
@@ -220,6 +242,11 @@ public class Card_Golf : MonoBehaviour
                 }
             }
             cp.faceUp = faceUp; // Set the value on the card
+
+            if (overlays.ContainsKey(cp))
+            {
+                overlays[cp].SetActive(!faceUp);
+            }
         }
     }
 

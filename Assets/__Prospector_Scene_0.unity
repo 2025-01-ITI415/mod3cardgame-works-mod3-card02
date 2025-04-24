@@ -311,6 +311,7 @@ MonoBehaviour:
   discardPile: []
   mine: []
   target: {fileID: 0}
+  overlayPrefab: {fileID: 2244833591947104904, guid: 12d752f8ff2d14e65ae6ef8caa31f58a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
