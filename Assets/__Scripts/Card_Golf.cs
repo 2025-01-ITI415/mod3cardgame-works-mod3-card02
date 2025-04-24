@@ -137,7 +137,6 @@ public class Card_Golf : MonoBehaviour
             if (overlaySR != null && cardSR != null)
             {
                 overlaySR.sortingLayerName = cardSR.sortingLayerName;
-                overlaySR.color = new Color(1f, 1f, 1f, 0.5f); // semi-transparent white
             }
 
             // Decide whether the overlay should be shown
